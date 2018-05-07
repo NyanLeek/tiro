@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <thread>
+#include "gfx.h"
 
 using namespace std;
 
@@ -38,6 +39,7 @@ circulo ( int x0, int y0, int radius )
           err += dx - (radius << 1);
       }
   }
+  return 0;
 }
 
 int
@@ -45,78 +47,92 @@ dibuja ( void )
 {  
   gfx_open (300, 300, "Tiro al blanco");
   gfx_clear_color( 33, 33, 33 );
-  int frame = 1;
   while (1)
   {
-    cout << "Frase: " << frame++ << '\r' << flush;
     gfx_clear ();
     gfx_color (255, 255, 0);
-    for(int i = 1;i < 6;i++)
+    for(int i = 1;i < 11;i++)
     {
       circulo(150,150,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,6);
+    circulo(150,150,11);
     gfx_color (255, 255, 0);
-    for(int i = 7;i < 12;i++)
+    for(int i = 12;i < 22;i++)
     {
       circulo(150,150,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,12);
-    gfx_color (255, 255, 0);
-    for(int i = 13;i < 18;i++)
+    circulo(150,150,22);
+    gfx_color (200, 0, 0);
+    for(int i = 23;i < 33;i++)
     {
       circulo(150,150,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,18);
-    gfx_color (255, 255, 0);
-    for(int i = 19;i < 24;i++)
+    circulo(150,150,33);
+    gfx_color (200, 0, 0);
+    for(int i = 34;i < 44;i++)
     {
       circulo(150,150,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,24);
-    gfx_color (255, 255, 0);
-    for(int i = 25;i < 30;i++)
+    circulo(150,150,44);
+    gfx_color (0, 180, 255);
+    for(int i = 45;i < 55;i++)
     {
       circulo(150,150,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,30);
-    gfx_color (255, 255, 0);
-    for(int i = 31;i < 36;i++)
+    circulo(150,150,55);
+    gfx_color (0, 180, 255);
+    for(int i = 56;i < 66;i++)
     {
       circulo(150,150,i);
     }
     
+    gfx_color (255, 255, 255);
+    circulo(150,150,66);
     gfx_color (0, 0, 0);
-    circulo(150,150,36);
-    gfx_color (255, 255, 0);
-    for(int i = 37;i < 42;i++)
+    for(int i = 67;i < 77;i++)
     {
       circulo(150,150,i);
     }
     
+    gfx_color (255, 255, 255);
+    circulo(150,150,77);
     gfx_color (0, 0, 0);
-    circulo(150,150,42);
-    gfx_color (255, 255, 0);
-    for(int i = 43;i < 48;i++)
+    for(int i = 78;i < 88;i++)
+    {
+      circulo(150,150,i);
+    }
+    
+    gfx_color (30, 30, 30);
+    circulo(150,150,88);
+    gfx_color (255, 255, 255);
+    for(int i = 89;i < 99;i++)
+    {
+      circulo(150,150,i);
+    }
+    
+    gfx_color (30, 30, 30);
+    circulo(150,150,99);
+    gfx_color (255, 255, 255);
+    for(int i = 100;i < 110;i++)
     {
       circulo(150,150,i);
     }
     
     gfx_flush ();
-    usleep (16666);
+    usleep (33333);
   }
 }
-
+/*
 int
 network_thread ( int port )
 {
@@ -142,13 +158,13 @@ network_thread ( int port )
     cout << "Mensaje enviado." << endl; 
   }
 }
-
+*/
 int
 main (int argc, char* argv[])
 {
-  if(argc < 2)
+  if(argc < 1)
   {
-    cout << "Argument missing. Usage: server side_size" << endl;
+    cout << "Argument missing. Usage: server" << endl;
     return 1;
   }
   
