@@ -2,9 +2,15 @@
 #include <iostream>
 #include <cstdlib>
 #include <thread>
+#include <vector>
 #include "gfx.h"
+#include "data.h"
+#include "PaqueteDatagrama.h"
+#include "SocketDatagrama.h"
 
 using namespace std;
+
+vector < data > points;
 
 int
 circulo ( int x0, int y0, int radius )
@@ -30,8 +36,8 @@ circulo ( int x0, int y0, int radius )
           y++;
           err += dy;
           dy += 2;
-      }
       
+      }
       if (err > 0)
       {
           x--;
@@ -53,7 +59,7 @@ dibuja ( void )
     gfx_color (255, 255, 0);
     for(int i = 1;i < 11;i++)
     {
-      circulo(150,150,i);
+        circulo(150,150,i);
     }
     
     gfx_color (0, 0, 0);
@@ -128,37 +134,38 @@ dibuja ( void )
       circulo(150,150,i);
     }
     
+    gfx_color (0, 255, 0);
+    for ( auto &p : points )
+    {
+      gfx_line(p.x + 150 -2, p.y +150 -2, p.x +150 +2, p.y +150 +2);
+      gfx_line(p.x + 150 +2, p.y +150 +2, p.x +150 -2, p.y +150 -2);
+    }
+    
     gfx_flush ();
     usleep (33333);
   }
 }
-/*
+
 int
-network_thread ( int port )
+red ( int port )
 {
-  data msj, msj_client;
+  data msj;
   char *ip_cliente;
   SocketDatagrama server (port);
   PaqueteDatagrama pk_recv (sizeof (msj));
   while (1) {
     cout << "Waiting for packet" << endl;
-    int n = server.recibe (pk_recv);
+    server.recibe (pk_recv);
     ip_cliente = pk_recv.obtieneDireccion ();
     int pto_cliente = pk_recv.obtienePuerto ();
     cout << "Packet received from " << ip_cliente << ":" << pto_cliente << endl;
-    msj_client = *pk_recv.obtieneDatos ();
+    msj = *pk_recv.obtieneDatos ();
     cout << "Received:"<< endl;
-    msj_client.print();
-    
     msj.print();
-    PaqueteDatagrama pk_send (&msj, sizeof (msj), ip_cliente, 3939);
-    cout << "Enviando mensaje..." << endl;
-    SocketDatagrama client (3939);
-    int m = client.envia (pk_send);
-    cout << "Mensaje enviado." << endl; 
+    points.push_back(msj);
   }
 }
-*/
+
 int
 main (int argc, char* argv[])
 {
@@ -168,13 +175,13 @@ main (int argc, char* argv[])
     return 1;
   }
   
-  int port = 9000;
+  int port = 7300;
     
   thread draw ( dibuja );
-  //thread receiving ( network_thread, port );
+  thread receive ( red, port );
   
   draw.join();
-  //receiving.join();
+  receive.join();
   
   return 0;
 }
