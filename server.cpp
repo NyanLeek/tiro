@@ -51,94 +51,94 @@ circulo ( int x0, int y0, int radius )
 int
 dibuja ( void )
 {  
-  gfx_open (300, 300, "Tiro al blanco");
+  gfx_open (600, 600, "Tiro al blanco");
   gfx_clear_color( 33, 33, 33 );
   while (1)
   {
     gfx_clear ();
     gfx_color (255, 255, 0);
-    for(int i = 1;i < 11;i++)
+    for(int i = 1;i < 21;i++)
     {
-        circulo(150,150,i);
+        circulo(300,300,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,11);
+    circulo(300,300,21);
     gfx_color (255, 255, 0);
-    for(int i = 12;i < 22;i++)
+    for(int i = 22;i < 42;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,22);
+    circulo(300,300,42);
     gfx_color (200, 0, 0);
-    for(int i = 23;i < 33;i++)
+    for(int i = 43;i < 63;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,33);
+    circulo(300,300,63);
     gfx_color (200, 0, 0);
-    for(int i = 34;i < 44;i++)
+    for(int i = 64;i < 84;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,44);
+    circulo(300,300,84);
     gfx_color (0, 180, 255);
-    for(int i = 45;i < 55;i++)
+    for(int i = 85;i < 105;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (0, 0, 0);
-    circulo(150,150,55);
+    circulo(300,300,105);
     gfx_color (0, 180, 255);
-    for(int i = 56;i < 66;i++)
+    for(int i = 106;i < 126;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (255, 255, 255);
-    circulo(150,150,66);
+    circulo(300,300,126);
     gfx_color (0, 0, 0);
-    for(int i = 67;i < 77;i++)
+    for(int i = 127;i < 147;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (255, 255, 255);
-    circulo(150,150,77);
+    circulo(300,300,147);
     gfx_color (0, 0, 0);
-    for(int i = 78;i < 88;i++)
+    for(int i = 148;i < 168;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (30, 30, 30);
-    circulo(150,150,88);
+    circulo(300,300,168);
     gfx_color (255, 255, 255);
-    for(int i = 89;i < 99;i++)
+    for(int i = 169;i < 189;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
     gfx_color (30, 30, 30);
-    circulo(150,150,99);
+    circulo(300,300,189);
     gfx_color (255, 255, 255);
-    for(int i = 100;i < 110;i++)
+    for(int i = 190;i < 210;i++)
     {
-      circulo(150,150,i);
+      circulo(300,300,i);
     }
     
-    gfx_color (0, 255, 0);
+    gfx_color (0, 0, 0);
     for ( auto &p : points )
     {
-      gfx_line(p.x + 150 -2, p.y +150 -2, p.x +150 +2, p.y +150 +2);
-      gfx_line(p.x + 150 +2, p.y +150 +2, p.x +150 -2, p.y +150 -2);
+      gfx_line(p.x + 300 -5, p.y +300 -5, p.x +300 +5, p.y +300 +5);
+      gfx_line(p.x + 300 +5, p.y +300 -5, p.x +300 -5, p.y +300 +5);
     }
     
     gfx_flush ();

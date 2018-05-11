@@ -1,4 +1,4 @@
-all:	server
+all:	server client
 	@echo done
 server:	server.cpp gfx.o data.o PaqueteDatagrama.o SocketDatagrama.o
 	g++ -o server server.cpp gfx.o data.o PaqueteDatagrama.o SocketDatagrama.o -Wall -lX11 -lpthread
